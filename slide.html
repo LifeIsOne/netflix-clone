@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        .slider-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slider-track img {
+            width: calc(100% / 3);
+            /* visibleImages */
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            const $sliderTrack = $('.slider-track');
+            const $prevBtn = $('#prevBtn');
+            const $nextBtn = $('#nextBtn');
+            const totalImages = $sliderTrack.children().length;
+            const visibleImages = 3;
+            const itemsPerPage = 3;
+            let currentIndex = 0;
+
+            function updateSlider() {
+                const offset = -currentIndex * (100 / visibleImages);
+                $sliderTrack.css('transform', `translateX(${offset}%)`);
+            }
+
+            function goToNextSlide() {
+                currentIndex = (currentIndex + itemsPerPage) % totalImages;
+                updateSlider();
+            }
+
+            function goToPrevSlide() {
+                currentIndex = (currentIndex - itemsPerPage + totalImages) % totalImages;
+                updateSlider();
+            }
+
+            $nextBtn.on('click', goToNextSlide);
+            $prevBtn.on('click', goToPrevSlide);
+
+            // 초기 슬라이더 상태 설정
+            updateSlider();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="slider-container">
+        <div class="slider-track">
+            <img src="images/top10_movie/top10_movie_02.jpg" alt="Image 1">
+            <img src="images/top10_movie/top10_movie_04.jpg" alt="Image 2">
+            <img src="images/top10_movie/top10_movie_06.jpg" alt="Image 3">
+            <img src="images/top10_movie/top10_movie_03.jpg" alt="Image 4">
+            <img src="images/top10_movie/top10_movie_01.jpg" alt="Image 5">
+            <img src="images/top10_movie/top10_movie_05.jpg" alt="Image 6">
+            <img src="images/top10_movie/top10_movie_04.jpg" alt="Image 2">
+            <img src="images/top10_movie/top10_movie_06.jpg" alt="Image 3">
+            <img src="images/top10_movie/top10_movie_03.jpg" alt="Image 4">
+            <img src="images/top10_movie/top10_movie_01.jpg" alt="Image 5">
+            <img src="images/top10_movie/top10_movie_05.jpg" alt="Image 6">
+        </div>
+    </div>
+    <button id="prevBtn">Previous</button>
+    <button id="nextBtn">Next</button>
+</body>
+
+</html>

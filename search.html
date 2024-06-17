@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    #search-box{
+        position: relative;
+        display: flex;
+        padding: 1rem;
+        top: 50%;
+        left: 50%;
+        width: 100px;
+        transform: translate(-44%, 30%);
+        border-radius: 20rem;
+        transition: 0.4s;
+        background-color: var(--search-bar);
+      }
+      #search-box:hover,
+      #search-box:focus-within{
+        width: 400px;
+      }
+      #search-box .search-txt{
+        padding: 0;
+        background-color: transparent;
+        color: var(--white);
+        float: left;
+        border: none;
+        outline: none;
+        width: 0;
+        transition: .4s;
+        font-size: 1.8rem;
+        line-height: 1rem;
+        transition: .4s;
+      }
+      #search-box:hover > .search-txt,
+      #search-box > .search-txt:focus{
+        width: 300px;
+        padding: 0 1rem;
+      }
+      #search-box .search-btn{
+        width: 50px;
+        background-color: var(--search-bar);
+        border-radius: 50%;
+      }
+      #search-box .search-icon{
+        width: 100%;
+        height: 100%;
+        padding: 1rem 0 1rem 2.5rem;
+      }
+      #search-box .search-txt::placeholder{
+        color: var(--white);
+      }</style>
+</head>
+<body>
+    <form id="search-box" method="get">
+        <input type="text" placeholder="검색어를 입력해주세요." class="search-txt">
+        <button type="submit" class="search-btn">
+          <i class="search-icon, fas fa-search"></i>
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+</body>
+</html>

@@ -1,0 +1,29 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const sliderTrack = document.querySelector('.slider-track');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const totalImages = sliderTrack.children.length;
+    const visibleImages = 3;
+    let currentIndex = 0;
+
+    function updateSlider() {
+        const offset = -currentIndex * (100 / visibleImages);
+        sliderTrack.style.transform = `translateX(${offset}%)`;
+    }
+
+    function goToNextSlide() {
+        currentIndex = (currentIndex + 1) % totalImages;
+        updateSlider();
+    }
+
+    function goToPrevSlide() {
+        currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+        updateSlider();
+    }
+
+    nextBtn.addEventListener('click', goToNextSlide);
+    prevBtn.addEventListener('click', goToPrevSlide);
+
+    // 초기 슬라이더 상태 설정
+    updateSlider();
+});
