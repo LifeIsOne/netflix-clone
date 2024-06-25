@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    @media (max-width: 830px) {
+      header {
+        display: flex;
+        justify-content: center;
+      }
+
+      .navbar {
+        justify-content: space-between;
+        width: 85%;
+      }
+
+      .right_container {
+        display: flex;
+        justify-content: end;
+      }
+
+      .navbar ul {
+        display: none;
+      }
+
+      .navbar select {
+        display: block;
+        width: wrap-content;
+        padding: 10px;
+        background-color: #111;
+        color: white;
+        border: none;
+        outline: none;
+      }
+
+      .navbar select option {
+        padding: 10px;
+        margin-top: 50px;
+      }
+
+      .row_posters {
+        display: flex;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        margin-top: -10px;
+        padding: 20px;
+      }
+
+      .row_poster {
+        width: 100%;
+        object-fit: contain;
+        max-height: 100px;
+        margin-right: 10px;
+        border-radius: 4px;
+        transition: transform 450ms;
+      }
+
+      .row_poster {
+        overflow: visible;
+        width: 100%;
+        object-fit: contain;
+        max-height: 100px;
+        margin-right: 10px;
+        border-radius: 4px;
+        transition: transform 450ms;
+        /*첫번째 프로그램일 경우 */
+        transform-origin: left center;
+      }
+    }
+  </style>
+  <script>
+    const searchButton = document.querySelector(".search_button");
+    const searchInput = document.querySelector(".searchbar");
+
+    searchButton.addEventListener("click", () => {
+      searchInput.classList.toggle("show_hidden");
+      searchButton.classList.toggle("show_hidden");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (e.target !== searchInput && e.target !== searchButton) {
+        if (searchButton.classList.contains("show_hidden")) {
+          searchButton.classList.toggle("show_hidden");
+          searchInput.classList.toggle("show_hidden");
+        }
+      }
+    });
+    window.addEventListener("scroll", () => {
+      const navbar = document.querySelector(".navbar");
+      if (window.scrollY > 0) {
+        console.log("scrolled");
+        console.log(navbar.classList);
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="left_container">
+        <!-- 로고 -->
+        <div class="logo">
+          <a>
+            <img src="images/netflix_logo.png" alt="logo" />
+          </a>
+        </div>
+
+        <!-- 메뉴 -->
+        <ul>
+          <li>
+            <a href="#">홈</a>
+          </li>
+          <li>
+            <a href="#">시리즈</a>
+          </li>
+          <li>
+            <a href="#">영화</a>
+          </li>
+          <li>
+            <a href="#">NEW! 요즘 대세 콘텐츠</a>
+          </li>
+          <li>
+            <a href="#">내가 찜한 리스트</a>
+          </li>
+          <li>
+            <a href="#">언어 별로 찾아보기</a>
+          </li>
+        </ul>
+
+        <!-- 모바일 뷰 메뉴-->
+        <select class="select" menu="bottom">
+          <option value="#" selected hidden>메뉴</option>
+          <option value="#">홈</option>
+          <option value="#">시리즈</option>
+          <option value="#">영화</option>
+          <option value="#">NEW! 요즘 대세 콘텐츠</option>
+          <option value="#">내가 찜한 리스트</option>
+          <option value="#">언어 별로 찾아보기</option>
+        </select>
+      </div>
+
+      <div class="right_container">
+        <!-- 검색 창 -->
+        <div class="searchbar show_hidden">
+          <input class="search_input" type="text" />
+          <img class="search_img" src="images/12.png" alt="search" />
+        </div>
+        <!-- 검색 버튼 -->
+        <button type="button" class="search_button">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet"
+            focusable="false" class="style-scope yt-icon"
+            style="pointer-events: none; display: block; width: 100%; height: 100%;">
+            <g class="style-scope yt-icon">
+              <path stroke="white"
+                d="M20.87,20.17l-5.59-5.59C16.35,13.35,17,11.75,17,10c0-3.87-3.13-7-7-7s-7,3.13-7,7s3.13,7,7,7c1.75,0,3.35-0.65,4.58-1.71 l5.59,5.59L20.87,20.17z M10,16c-3.31,0-6-2.69-6-6s2.69-6,6-6s6,2.69,6,6S13.31,16,10,16z"
+                class="style-scope yt-icon"></path>
+            </g>
+          </svg>
+        </button>
+      </div>
+    </nav>
+    <div class="poster_wrap">
+      <svg class="rank" width="200px" height="200px" viewBox="-20 0 70 154">
+        <path stroke="#595959" stroke-linejoin="square" stroke-width="4"
+          d="M35.377 152H72V2.538L2 19.362v30.341l33.377-8.459V152z"></path>
+      </svg>
+      <img src="./assets/images/large-movie1.jpg" alt="movie" class="row_poster row_posterLarge" />
+      <img src="static/images/top10_movie/top10_movie_01.jpg" alt="movie" class="row_poster row_posterLarge" />
+    </div>
+  </header>
+</body>
+
+</html>
